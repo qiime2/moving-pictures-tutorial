@@ -5,7 +5,7 @@ downloads:
 ---
 
 (tutorial)=
-# *Moving Pictures* tutorial 🎥
+# Tutorial
 
 :::{note}
 This guide assumes you have installed the QIIME 2 amplicon distribution, and have activated its conda environment.
@@ -63,7 +63,7 @@ Visualizations can be viewed by loading them with [QIIME 2 View](https://view.qi
 Navigate to QIIME 2 View, and drag and drop the visualization that was created to view it.
 (You can learn more about viewing Visualizations, including alternatives to QIIME 2 View if you can't use that for any reason, [here](https://use.qiime2.org/en/latest/how-to-guides/view-visualizations.html).)
 
-```{embed} #metadata-in-provenance-warning
+```{embed} xref:q2doc-amplicon-target#metadata-in-provenance-warning
 ```
 
 ## Obtaining and importing data
@@ -221,7 +221,7 @@ use.action(
     use.UsageOutputNames(visualization='stats'))
 :::
 
-(moving-pictures:deblur)=
+(deblur)=
 ### Option 2: Deblur
 
 [Deblur](http://msystems.asm.org/content/2/2/e00191-16) uses sequence error profiles to associate erroneous sequence reads with the true biological sequence from which they are derived, resulting in high quality sequence variant data.
@@ -703,7 +703,6 @@ Because we expect a lot of features to change in abundance across body sites, in
 We'll then apply ANCOM-BC to determine which, if any, sequence variants and genera are differentially abundant across the gut samples of our two subjects.
 
 We'll start by creating a feature table that contains only the gut samples.
-(To learn more about filtering, see the `Filtering Data <filtering>`{.interpreted-text role="doc"} tutorial.)
 
 :::{describe-usage}
 
