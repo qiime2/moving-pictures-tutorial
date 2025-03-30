@@ -1,0 +1,8 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 5d99c79
+_src_path: https://github.com/gregcaporaso/q2docs-tutorial-template
+author_website: https://qiime2.org
+book_author: QIIME 2
+book_id: moving-pictures-tutorial
+book_title: 'The Moving Pictures Tutorial '
+module_name: moving_pictures_tutorial

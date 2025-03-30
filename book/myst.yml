@@ -1,0 +1,32 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: moving-pictures-tutorial
+  title: The Moving Pictures Tutorial
+  # description:
+  # keywords: []
+  # uncommenting "authors" will put the author list on every page
+  # authors: ["QIIME 2"]
+  # github:
+  references:
+    q2doc-api-target: https://develop.qiime2.org/en/latest/
+    q2doc-usage-target: https://use.qiime2.org/en/latest/
+    q2doc-library-target: https://library.qiime2.org
+    q2doc-amplicon-target: https://amplicon-docs.readthedocs.io/en/latest/
+
+  plugins:
+    - type: executable
+      path: q2doc-plug.py
+
+  toc:
+    - file: intro.md
+    - file: tutorial.md
+
+site:
+  template: https://github.com/ebolyen/myst-book-theme-poc.git
+  options:
+      folders: true
+      favicon: _static/favicon.ico
+      logo: _static/logo-light.png
+      logo_dark: _static/logo-dark.png
+      pretty_urls: false
