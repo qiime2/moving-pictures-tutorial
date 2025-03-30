@@ -4,3 +4,4 @@ book/_build/
 book/data/
 .locks/
 .DS_Store
+book/deblur.log
