@@ -45,7 +45,7 @@ sample_metadata = use.init_metadata_from_url(
 :::
 
 QIIME 2's metadata plugin provides a Visualizer called `tabulate` that generates a convenient view of a sample metadata file.
-To learn more about `metadata tabulate`, you can find it in the plugin reference [here](../plugin-reference/plugins/metadata/3-tabulate).
+To learn more about `metadata tabulate`, see [here](xref:q2doc-library-target#q2-action-metadata-tabulate).
 Let's run this, and then we'll look at the result.
 Here's the first QIIME 2 command that you should run in this tutorial:
 
@@ -109,7 +109,7 @@ So, the first thing we need to do is import these sequence data files into a QII
 
 The semantic type of this QIIME 2 artifact is `EMPSingleEndSequences`.
 `EMPSingleEndSequences` QIIME 2 artifacts contain sequences that are multiplexed, meaning that the sequences have not yet been assigned to samples (where the `barcodes.fastq.gz` contains the barcode read associated with each sequence in `sequences.fastq.gz`.)
-To learn about how to import sequence data in other formats, see the `importing data tutorial <importing>`{.interpreted-text role="doc"}.
+To learn about how to import sequence data in other formats, see *[How to import data for use with QIIME 2](https://amplicon-docs.readthedocs.io/en/latest/how-to-guides/how-to-import.html)*.
 
 :::{describe-usage}
 emp_single_end_sequences = use.import_from_format(
@@ -169,9 +169,10 @@ Navigate to QIIME 2 View, and drag and drop the visualization that was created t
 
 ## Sequence quality control and feature table construction
 
-QIIME 2 plugins are available for several quality control methods, including [DADA2](https://www.ncbi.nlm.nih.gov/pubmed/27214047), [Deblur](http://msystems.asm.org/content/2/2/e00191-16), and [basic quality-score-based filtering](http://www.nature.com/nmeth/journal/v10/n1/abs/nmeth.2276.html).
-In this tutorial we present this step using [DADA2](https://www.ncbi.nlm.nih.gov/pubmed/27214047) and [Deblur](http://msystems.asm.org/content/2/2/e00191-16).
+QIIME 2 plugins are available for several quality control methods, including [DADA2](https://doi.org/10.1038/nmeth.3869), [Deblur](https://doi.org/10.1128/msystems.00191-16), and [basic quality-score-based filtering](https://doi.org/10.1038/nmeth.2276).
+In this tutorial we present this step using DADA2 and Deblur.
 These steps are interchangeable, so you can use whichever of these you prefer.
+A comparison of these is presented in [](https://doi.org/10.7717/peerj.5364).
 The result of both of these methods will be a `FeatureTable[Frequency]` QIIME 2 artifact, which contains counts (frequencies) of each unique sequence in each sample in the dataset, and a `FeatureData[Sequence]` QIIME 2 artifact, which maps feature identifiers in the `FeatureTable` to the sequences they represent.
 
 :::{note}
@@ -183,7 +184,7 @@ It's important to note that in this step, or any step in QIIME 2, the filenames 
 
 ### Option 1: DADA2
 
-[DADA2](https://www.ncbi.nlm.nih.gov/pubmed/27214047) is a pipeline for detecting and correcting (where possible) Illumina amplicon sequence data.
+[DADA2](https://doi.org/10.1038/nmeth.3869) is a pipeline for detecting and correcting (where possible) Illumina amplicon sequence data.
 As implemented in the `q2-dada2` plugin, this quality control process will additionally filter any phiX reads (commonly present in marker gene Illumina sequence data) that are identified in the sequencing data, and will filter chimeric sequences.
 
 The `dada2 denoise-single` method requires two parameters that are used in quality filtering: `--p-trim-left m`, which trims off the first `m` bases of each sequence, and `--p-trunc-len n` which truncates each sequence at position `n`.
@@ -224,10 +225,10 @@ use.action(
 (deblur)=
 ### Option 2: Deblur
 
-[Deblur](http://msystems.asm.org/content/2/2/e00191-16) uses sequence error profiles to associate erroneous sequence reads with the true biological sequence from which they are derived, resulting in high quality sequence variant data.
+[Deblur](https://doi.org/10.1128/msystems.00191-16) uses sequence error profiles to associate erroneous sequence reads with the true biological sequence from which they are derived, resulting in high quality sequence variant data.
 This is applied in two steps.
 First, an initial quality filtering process based on quality scores is applied.
-This method is an implementation of the quality filtering approach described by [Bokulich et al. (2013)](http://www.nature.com/nmeth/journal/v10/n1/abs/nmeth.2276.html).
+This method is an implementation of the quality filtering approach described by [Bokulich et al. (2013)](https://doi.org/10.1038/nmeth.2276).
 
 :::{describe-usage}
 filtered_seqs, filter_stats = use.action(
@@ -239,8 +240,8 @@ filtered_seqs, filter_stats = use.action(
 :::
 
 :::{note}
-In the [Deblur](http://msystems.asm.org/content/2/2/e00191-16) paper, the authors used different quality-filtering parameters than what [they
-currently recommend after additional analysis](https://qiita.ucsd.edu/static/doc/html/deblur_quality.html).
+In the Deblur paper, the authors used different quality-filtering parameters than what [they
+currently recommend after additional analysis](https://qiita.ucsd.edu/static/doc/html/processingdata/deblur_quality.html).
 The parameters used here are based on those more recent recommendations.
 :::
 
@@ -489,7 +490,7 @@ Are these differences statistically significant?
 In this data set, no continuous sample metadata columns (e.g., `days-since-experiment-start`) are correlated with alpha diversity, so we won't test for those associations here.
 If you're interested in performing those tests (for this data set, or for others), you can use the `qiime diversity alpha-correlation` command.
 
-Next we'll analyze sample composition in the context of categorical metadata using PERMANOVA (first described in [Anderson (2001)](http://onlinelibrary.wiley.com/doi/10.1111/j.1442-9993.2001.01070.pp.x/full)) using the `beta-group-significance` command.
+Next we'll analyze sample composition in the context of categorical metadata using PERMANOVA (first described in [Anderson (2001)](https://doi.org/10.1111/j.1442-9993.2001.01070.pp.x)) using the `beta-group-significance` command.
 The following commands will test whether distances between samples within a group, such as samples from the same body site (e.g., gut), are more similar to each other then they are to samples from the other groups (e.g., tongue, left palm, and right palm).
 If you call this command with the `--p-pairwise` parameter, as we'll do here, it will also perform pairwise tests that will allow you to determine which specific pairs of groups (e.g., tongue and gut) differ from one another, if any.
 This command can be slow to run, especially when passing `--p-pairwise`, since it is based on permutation tests.
@@ -527,7 +528,7 @@ Again, none of the continuous sample metadata that we have for this data set are
 If you're interested in performing those tests, you can use the `qiime metadata distance-matrix` in combination with `qiime diversity mantel` and `qiime diversity bioenv` commands.
 
 Finally, ordination is a popular approach for exploring microbial community composition in the context of sample metadata.
-We can use the [Emperor](http://emperor.microbio.me) tool to explore principal coordinates (PCoA) plots in the context of sample metadata.
+We can use the [Emperor](https://doi.org/10.1186/2047-217x-2-16) tool to explore principal coordinates (PCoA) plots in the context of sample metadata.
 While our `core-metrics-phylogenetic` command did already generate some Emperor plots, we want to pass an optional parameter, `--p-custom-axes`, which is very useful for exploring time series data.
 The PCoA results that were used in `core-metrics-phylogeny` are also available, making it easy to generate new visualizations with Emperor.
 We will generate Emperor plots for unweighted UniFrac and Bray-Curtis so that the resulting plot will contain axes for principal coordinate 1, principal coordinate 2, and days since the experiment start.
@@ -689,7 +690,7 @@ What are the dominant phyla in each in `body-site`? Do you observe any consisten
 
 ANCOM-BC can be applied to identify features that are differentially abundant (i.e. present in different abundances) across sample groups.
 As with any bioinformatics method, you should be aware of the assumptions and limitations of ANCOM-BC before using it.
-We recommend reviewing the [ANCOM-BC paper](https://pubmed.ncbi.nlm.nih.gov/32665548/) before using this method.
+We recommend reviewing the [ANCOM-BC paper](https://doi.org/10.1038/s41467-020-17041-7) before using this method.
 
 ::::{note}
 Accurately identifying features that are differentially abundant across sample types in microbiome data is a challenging problem and an open area of research.
