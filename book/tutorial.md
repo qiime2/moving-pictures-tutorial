@@ -1,14 +1,8 @@
----
-downloads:
-  - file: _static/environment.yml
-    title: Conda environment file
----
-
 (tutorial)=
 # Tutorial
 
 :::{note}
-This guide assumes you have installed the QIIME 2 amplicon distribution, and have activated its conda environment.
+This guide assumes you have installed the [QIIME 2 amplicon distribution](https://library.qiime2.org/quickstart/amplicon), and have activated its conda environment.
 :::
 
 ## Background
