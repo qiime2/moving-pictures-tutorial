@@ -63,8 +63,15 @@ Visualizations can be viewed by loading them with [QIIME 2 View](https://view.qi
 Navigate to QIIME 2 View, and drag and drop the visualization that was created to view it.
 (You can learn more about viewing Visualizations, including alternatives to QIIME 2 View if you can't use that for any reason, [here](https://use.qiime2.org/en/latest/how-to-guides/view-visualizations.html).)
 
-```{embed} xref:q2doc-amplicon-target#metadata-in-provenance-warning
-```
+:::{warning} Warning: Do not include confidential information in your metadata.
+QIIME 2 goes to great lengths to ensure that your bioinformatics workflow will be reproducible.
+This includes recording information about your analysis inside of your Results' data provenance, and the recorded information includes metadata that you provided to run specific commands.
+For this and other reasons, we strongly recommend that you **never include confidential information, such as Personally Identifying Information (PII), in your QIIME 2 metadata**.
+**Because QIIME 2 stores metadata in your data provenance, confidential information that you use in a QIIME 2 analysis will persist in downstream Results.**
+
+Instead of including confidential information in your metadata, you should encode it with variables that only authorized individuals have access to.
+For example, subject names should be replaced with anonymized subject identifiers before use with QIIME 2.
+:::
 
 ## Obtaining and importing data
 
