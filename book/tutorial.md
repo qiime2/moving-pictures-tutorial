@@ -202,7 +202,7 @@ This next command may take up to 10 minutes to run, and is the slowest step in t
 
 :::{describe-usage}
 
-rep_seqs_dada2, table_dada2, stats_dada2 = use.action(
+rep_seqs_dada2, table_dada2, denoising_stats, base_transition_stats = use.action(
     use.UsageAction(plugin_id='dada2',
                     action_id='denoise_single'),
     use.UsageInputs(demultiplexed_seqs=demux,
@@ -210,17 +210,18 @@ rep_seqs_dada2, table_dada2, stats_dada2 = use.action(
                     trunc_len=120),
     use.UsageOutputNames(representative_sequences='rep_seqs',
                          table='table',
-                         denoising_stats='stats'))
+                         denoising_stats='denoising_stats',
+                         base_transition_stats='base_transition_stats'))
 :::
 
 :::{describe-usage}
-stats_as_md = use.view_as_metadata('stats_dada2_md', stats_dada2)
+stats_as_md = use.view_as_metadata('stats_dada2_md', denoising_stats)
 
 use.action(
     use.UsageAction(plugin_id='metadata',
                     action_id='tabulate'),
     use.UsageInputs(input=stats_as_md),
-    use.UsageOutputNames(visualization='stats'))
+    use.UsageOutputNames(visualization='denoising_stats'))
 :::
 
 (deblur)=
