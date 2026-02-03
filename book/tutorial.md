@@ -322,8 +322,11 @@ use.action(
     use.UsageAction(plugin_id='feature_table',
                     action_id='summarize'),
     use.UsageInputs(table=table_dada2,
-                    sample_metadata=sample_metadata),
-    use.UsageOutputNames(visualization='table'))
+                    metadata=sample_metadata),
+    use.UsageOutputNames(summary='table',
+                         feature_frequencies='feature_frequencies',
+                         sample_frequencies='sample_frequencies')
+)
 
 use.action(
     use.UsageAction(plugin_id='feature_table',
