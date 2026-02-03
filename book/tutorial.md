@@ -214,7 +214,7 @@ rep_seqs_dada2, table_dada2, denoising_stats, base_transition_stats = use.action
                          base_transition_stats='base_transition_stats'))
 :::
 
-:::{describe-usage}
+<!-- :::{describe-usage}
 stats_as_md = use.view_as_metadata('stats_dada2_md', denoising_stats)
 
 use.action(
@@ -222,7 +222,7 @@ use.action(
                     action_id='tabulate'),
     use.UsageInputs(input=stats_as_md),
     use.UsageOutputNames(visualization='denoising_stats'))
-:::
+::: -->
 
 (deblur)=
 ### Option 2: Deblur
