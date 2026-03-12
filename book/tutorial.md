@@ -27,7 +27,7 @@ The following command will download the sample metadata as tab-separated text an
 This `sample-metadata.tsv` file is used throughout the rest of the tutorial.
 
 :::{tip}
-To learn more about metadata in QIIME 2, including how it should be formatted, refer to [*Using QIIME 2*'s Metadata file format](https://use.qiime2.org/en/latest/references/metadata.html).
+To learn more about metadata in QIIME 2, including how it should be formatted, refer to [*Using QIIME 2*'s Metadata file format](https://use.qiime2.org/en/2025.10/references/metadata.html).
 :::
 
 :::{describe-usage}
@@ -55,7 +55,7 @@ sample_metadata_viz, = use.action(
 This will generate a QIIME 2 Visualization.
 Visualizations can be viewed by loading them with [QIIME 2 View](https://view.qiime2.org).
 Navigate to QIIME 2 View, and drag and drop the visualization that was created to view it.
-(You can learn more about viewing Visualizations, including alternatives to QIIME 2 View if you can't use that for any reason, [here](https://use.qiime2.org/en/latest/how-to-guides/view-visualizations.html).)
+(You can learn more about viewing Visualizations, including alternatives to QIIME 2 View if you can't use that for any reason, [here](https://use.qiime2.org/en/2025.10/how-to-guides/view-visualizations.html).)
 
 :::{warning} Warning: Do not include confidential information in your metadata.
 QIIME 2 goes to great lengths to ensure that your bioinformatics workflow will be reproducible.
@@ -110,7 +110,7 @@ So, the first thing we need to do is import these sequence data files into a QII
 
 The semantic type of this QIIME 2 artifact is `EMPSingleEndSequences`.
 `EMPSingleEndSequences` QIIME 2 artifacts contain sequences that are multiplexed, meaning that the sequences have not yet been assigned to samples (where the `barcodes.fastq.gz` contains the barcode read associated with each sequence in `sequences.fastq.gz`.)
-To learn about how to import sequence data in other formats, see *[How to import data for use with QIIME 2](https://amplicon-docs.readthedocs.io/en/latest/how-to-guides/how-to-import.html)*.
+To learn about how to import sequence data in other formats, see *[How to import data for use with QIIME 2](https://amplicon-docs.readthedocs.io/en/2025.10/how-to-guides/how-to-import.html)*.
 
 :::{describe-usage}
 emp_single_end_sequences = use.import_from_format(
@@ -162,7 +162,7 @@ use.action(
 
 :::{note}
 All QIIME 2 visualizers (i.e., commands that take a `--o-visualization` parameter) will generate a Visualization (i.e., a`.qzv` file).
-As discussed above, Visualizations can be viewed by loading them with [QIIME 2 View](https://view.qiime2.org) or using one of the alternative mechanisms discussed [here](https://use.qiime2.org/en/latest/how-to-guides/view-visualizations.html).
+As discussed above, Visualizations can be viewed by loading them with [QIIME 2 View](https://view.qiime2.org) or using one of the alternative mechanisms discussed [here](https://use.qiime2.org/en/2025.10/how-to-guides/view-visualizations.html).
 When you see instructions to *view a visualization*, you should use one of the approaches on the `.qzv` file that we're referring to.
 Navigate to QIIME 2 View, and drag and drop the visualization that was created to view it.
 (You can learn more about viewing Visualizations, including alternatives to QIIME 2 View if you can't use that for any reason, .)
