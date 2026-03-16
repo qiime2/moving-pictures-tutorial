@@ -23,7 +23,7 @@ project:
     - file: tutorial.md
 
 site:
-  template: https://github.com/ebolyen/myst-book-theme-poc.git
+  template: book-theme
   options:
       folders: true
       favicon: _static/favicon.ico
