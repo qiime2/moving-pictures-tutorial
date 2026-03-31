@@ -9,10 +9,8 @@ project:
   # authors: ["QIIME 2"]
   # github:
   references:
-    q2doc-api-target: https://develop.qiime2.org/en/latest/
-    q2doc-usage-target: https://use.qiime2.org/en/latest/
-    q2doc-library-target: https://library.qiime2.org
-    q2doc-amplicon-target: https://amplicon-docs.readthedocs.io/en/latest/
+    rachis-glossary-target: https://news.rachis.org/en/latest/
+    rachis-library-target: https://library.qiime2.org
 
   plugins:
     - type: executable
