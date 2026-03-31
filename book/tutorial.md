@@ -39,7 +39,7 @@ sample_metadata = use.init_metadata_from_url(
 :::
 
 QIIME 2's metadata plugin provides a Visualizer called `tabulate` that generates a convenient view of a sample metadata file.
-To learn more about `metadata tabulate`, see [here](xref:q2doc-library-target#q2-action-metadata-tabulate).
+To learn more about `metadata tabulate`, see [here](xref:rachis-library-target#q2-action-metadata-tabulate).
 Let's run this, and then we'll look at the result.
 Here's the first QIIME 2 command that you should run in this tutorial:
 
