@@ -615,37 +615,75 @@ What do you think is happening here?
 :::
 
 ## Taxonomic analysis
+We'll next generate taxonomic annotations for our sequences using the [feature-classifier plugin](xref:rachis-library-target#q2-plugin-feature-classifier).
 
-In the next sections we'll begin to explore the taxonomic composition of the samples, and again relate that to sample metadata.
-The first step in this process is to assign taxonomy to the sequences in our `FeatureData[Sequence]` QIIME 2 artifact.
-We'll do that using a pre-trained Naive Bayes classifier and the `q2-feature-classifier` plugin.
-This classifier was trained on the Greengenes 13_8 99% OTUs, where the sequences have been trimmed to only include 250 bases from the region of the 16S that was sequenced in this analysis (the V4 region, bound by the 515F/806R primer pair).
-We'll apply this classifier to our sequences, and we can generate a visualization of the resulting mapping from sequence to taxonomy.
-
-::::{note}
-The taxonomic classifier used here is very specific to the sample preparation and sequencing protocols used for this study, and [Greengenes 13_8, which it is trained on, is an outdated reference database](https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291).
-The reason we use it here is because the reference data is relatively small, so classification can be run on most modern computers with this classifier.
-
-Generally speaking, we think it's not necessary to use a classifier that was trained on sequences that were trimmed based on the primers you sequenced with.
-In practice we notice very minor differences, if any, relative to those trained on full-length sequences.
-Far more impactful is the use of environment-weighted classifiers, as described in [Kaehler et al., (2019)](https://doi.org/10.1038/s41467-019-12669-6).
+(suboptimal-classifier-explanation)=
+:::{warning}
+The taxonomic classifier used here is trained on Greengenes 13_8, which [is an outdated reference database](https://forum.qiime2.org/t/introducing-greengenes2-2022-10/25291).
+The reason we use it here is because the reference data is relatively small, so classification can be run quickly on most modern computers with this classifier.
+To remind readers that they shouldn't use this classifier in practice, we're going to refer to the one we build here as our *suboptimal 16S rRNA classifier*.
 
 When you're ready to work on your own data, one of the choices you'll need to make is what classifier to use for your data.
-You can find pre-trained classifiers on our [*Resources* page](https://resources.qiime2.org/), and [lots of discussion of this topic on the Forum](https://forum.qiime2.org/tag/taxonomy).
-::::
+You can discover pre-trained classifiers on the QIIME 2 Library [*Resources* page](https://library.qiime2.org/data-resources).
+If you don't find a classifier that will work for you there, you may be able to [find one on the Forum](https://forum.qiime2.org/tag/taxonomy), or you can learn how to train your own [by referencing the RESCRIPt documentation](https://github.com/bokulich-lab/RESCRIPt).
+
+We recommend the use of environment-weighted classifiers, as described in [Kaehler et al., (2019)](https://doi.org/10.1038/s41467-019-12669-6), and you can discover these from the [*Resources* page](https://library.qiime2.org/data-resources).
+:::
+
+#### Training our (suboptimal) 16S rRNA taxonomy classifier
+Here we are going to train our [suboptimal](#suboptimal-classifier-explanation) 16S rRNA classifier.
+Training a taxonomy classifier can be a slow and memory-intensive step, but the suboptimal classifier is fast to train because we are using the reference sequences following clustering at 85% similarity, which gives us a relatively small reference dataset (about 5000 sequences).
+
+First, we'll obtain the sequence data and the associated taxonomy annotations.
 
 :::{describe-usage}
-
-def classifier_factory():
-    from urllib import request
-    from qiime2 import Artifact
-    fp, _ = request.urlretrieve(
-        'https://data.qiime2.org/classifiers/sklearn-1.4.2/greengenes/gg-13-8-99-515-806-nb-classifier.qza')
-
-    return Artifact.load(fp)
-
-classifier = use.init_artifact('gg-13-8-99-515-806-nb-classifier', classifier_factory)
+reference_sequences = use.init_artifact_from_url(
+    'reference-sequences',
+    'https://docs.qiime2.org/2024.10/data/tutorials/feature-classifier/85_otus.qza')
 :::
+
+:::{describe-usage}
+reference_taxonomy = use.init_artifact_from_url(
+    'reference-taxonomy',
+    'https://docs.qiime2.org/2024.10/data/tutorials/feature-classifier/ref-taxonomy.qza')
+:::
+
+::::{note} Optional: viewing the taxonomy reference data
+:class: dropdown
+
+If you'd like to inspect the reference data before using it (never a bad idea!) you can do that by generating a summary which includes high-level characteristics and a table of the sequences and their associated taxonomy as follows:
+
+:::{describe-usage}
+reference_taxonomy_collection = use.construct_artifact_collection(
+    'reference-taxonomy-collection',
+    {'Greengenes_13_8_85p_OTUs': reference_taxonomy}
+)
+
+use.action(
+    use.UsageAction(plugin_id='feature_table',
+                    action_id='tabulate_seqs'),
+    use.UsageInputs(data=reference_sequences,
+                    taxonomy=reference_taxonomy_collection,
+                    merge_method='intersect'),
+    use.UsageOutputNames(visualization='reference_taxonomy'),
+)
+:::
+
+::::
+
+We'll use these data to train a Naïve Bayes taxonomy classifier, using [q2-feature-classifier](https://doi.org/10.1186/s40168-018-0470-z).
+This gives us our taxonomy classifier as a QIIME 2 artifact.
+
+:::{describe-usage}
+classifier, = use.action(
+    use.UsageAction(plugin_id='feature_classifier',
+                    action_id='fit_classifier_naive_bayes'),
+    use.UsageInputs(reference_reads=reference_sequences,
+                    reference_taxonomy=reference_taxonomy),
+    use.UsageOutputNames(classifier='suboptimal-16S-rRNA-classifier'))
+:::
+
+#### Apply our (suboptimal) taxonomy classifier
 
 :::{describe-usage}
 
