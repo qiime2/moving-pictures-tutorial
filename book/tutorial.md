@@ -775,8 +775,7 @@ ancombc_subject, = use.action(
 use.action(
     use.UsageAction(plugin_id='composition',
                     action_id='da_barplot'),
-    use.UsageInputs(data=ancombc_subject,
-                    significance_threshold=0.001),
+    use.UsageInputs(data=ancombc_subject),
     use.UsageOutputNames(visualization='da_barplot_subject'))
 :::
 
@@ -810,8 +809,7 @@ l6_ancombc_subject, = use.action(
 use.action(
     use.UsageAction(plugin_id='composition',
                     action_id='da_barplot'),
-    use.UsageInputs(data=l6_ancombc_subject,
-                    significance_threshold=0.001),
+    use.UsageInputs(data=l6_ancombc_subject),
     use.UsageOutputNames(visualization='l6_da_barplot_subject'))
 :::
 
