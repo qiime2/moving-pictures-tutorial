@@ -1,6 +1,12 @@
 (tutorial)=
 # Tutorial
 
+:::{warning}
+We now recommend starting to learn QIIME 2 using the [gut-to-soil tutorial](https://amplicon-docs.qiime2.org/en/stable/), instead of the *Moving Pictures* tutorial presented here.
+This version of the *Moving Pictures* tutorial still works, but we now focus on adding new content, exercises, and up-to-date guidance to gut-to-soil.
+Recommendations found in this document may be out of date. 
+:::
+
 :::{note}
 This guide assumes you have installed the [QIIME 2 amplicon distribution](https://library.qiime2.org/quickstart/amplicon), and have activated its conda environment.
 :::
