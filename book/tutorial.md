@@ -1,10 +1,9 @@
 (tutorial)=
 # Tutorial
 
-:::{warning}
-We now recommend starting to learn QIIME 2 using the [gut-to-soil tutorial](https://amplicon-docs.qiime2.org/en/stable/), instead of the *Moving Pictures* tutorial presented here.
-This version of the *Moving Pictures* tutorial still works, but we now focus on adding new content, exercises, and up-to-date guidance to gut-to-soil.
-Recommendations found in this document may be out of date. 
+:::{warning} The *Moving Pictures* tutorial has been succeeded by the gut-to-soil tutorial.
+We now recommend starting to learn QIIME 2 from the [gut-to-soil tutorial](https://amplicon-docs.qiime2.org/en/stable/tutorials/gut-to-soil/), instead of the *Moving Pictures* tutorial which is the document that you are reading now.
+This version of the *Moving Pictures* tutorial still works, but our latest content, exercises, and guidance will be found in the gut-to-soil tutorial.
 :::
 
 :::{note}
