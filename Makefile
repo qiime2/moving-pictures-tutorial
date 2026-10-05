@@ -9,13 +9,13 @@ _copy-data:
 	fi
 
 _build-html:
-	cd book && Q2DOC_BASE_COMMAND='qiime2' jupyter book build --html
+	cd book && Q2DOC_BASE_COMMAND='qiime' jupyter book build --html
 
 _build-fast-preview:
 	cd book && Q2DOC_FASTMODE= jupyter book build --html
 
 _build-preview:
-	cd book && Q2DOC_BASE_COMMAND='qiime2' Q2DOC_PREVIEW= jupyter book build --html
+	cd book && Q2DOC_BASE_COMMAND='qiime' Q2DOC_PREVIEW= jupyter book build --html
 
 # main targets
 autodoc:
