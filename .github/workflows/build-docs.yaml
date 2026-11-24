@@ -1,0 +1,29 @@
+name: build-docs
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - '[0-9][0-9][0-9][0-9].*'
+  workflow_dispatch:
+    inputs:
+      canonical-url:
+        description: 'URL the docs will be served from (optional)'
+        required: false
+        default: ''
+
+concurrency:
+  group: build-docs-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-docs:
+    uses: qiime2/distributions/.github/workflows/lib-build-docs.yaml@dev
+    with:
+      rtd-slug: moving-pictures-tutorial
+      book-dir: book
+      pre-build: q2doc refresh-cache
+      canonical-url: ${{ inputs.canonical-url }}
+    secrets:
+      rtd-token: ${{ secrets.MP_PAT }}
