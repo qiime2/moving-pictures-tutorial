@@ -644,13 +644,13 @@ First, we'll obtain the sequence data and the associated taxonomy annotations.
 :::{describe-usage}
 reference_sequences = use.init_artifact_from_url(
     'reference-sequences',
-    'https://docs.qiime2.org/2024.10/data/tutorials/feature-classifier/85_otus.qza')
+    'https://zenodo.org/records/24082639/files/85_otus.qza?download=1')
 :::
 
 :::{describe-usage}
 reference_taxonomy = use.init_artifact_from_url(
     'reference-taxonomy',
-    'https://docs.qiime2.org/2024.10/data/tutorials/feature-classifier/ref-taxonomy.qza')
+    'https://zenodo.org/records/24082639/files/ref-taxonomy.qza?download=1')
 :::
 
 ::::{note} Optional: viewing the taxonomy reference data
